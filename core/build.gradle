@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        consumerProguardFiles 'proguard-rules.pro'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        buildTypes {
+            debug {
+                debuggable true
+                minifyEnabled false
+            }
+            staging {
+                debuggable false
+                minifyEnabled true
+            }
+            release {
+                debuggable false
+                minifyEnabled true
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+
+    // Android X
+    api 'androidx.appcompat:appcompat:1.0.2'
+    api 'androidx.multidex:multidex:2.0.1'
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    api "androidx.room:room-runtime:$rootProject.roomVersion"
+    api "androidx.room:room-rxjava2:$rootProject.roomVersion"
+
+    // Google
+    api "com.google.android.material:material:$rootProject.materialVersion"
+    api "com.google.android.gms:play-services-base:$rootProject.playServicesVersion"
+    api "com.google.android.gms:play-services-location:16.0.0"
+
+    // Android Architecture
+    api "androidx.lifecycle:lifecycle-extensions:$rootProject.archVersion"
+
+    // Kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Koin DI
+    api "org.koin:koin-android:$rootProject.koinVersion"
+    api "org.koin:koin-androidx-viewmodel:$rootProject.ext.koinVersion"
+
+    // RxJava
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    // Logs
+    api "com.orhanobut:logger:$rootProject.loggerVersion"
+
+    // Unit Tests
+    testImplementation 'junit:junit:4.12'
+}

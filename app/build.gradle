@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    signingConfigs {
+        debug {
+
+        }
+        staging {
+
+        }
+        release {
+
+        }
+    }
+    defaultConfig {
+        applicationId "com.renzema.cluedoai"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix " DEBUG"
+            signingConfig signingConfigs.debug
+            debuggable true
+            minifyEnabled false
+        }
+        staging {
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-STAGING"
+            signingConfig signingConfigs.staging
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+        }
+        release {
+            signingConfig signingConfigs.release
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':core')
+
+    // Unit Tests
+    testImplementation 'junit:junit:4.12'
+
+    // Instrumentation Tests
+    androidTestImplementation "androidx.test.ext:junit:1.1.0"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
