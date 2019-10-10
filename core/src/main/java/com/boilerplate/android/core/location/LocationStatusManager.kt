@@ -16,7 +16,7 @@ class LocationStatusManager {
 
     private val queue = mutableMapOf<Int, (Boolean) -> Unit>()
 
-    open fun isGpsEnabled(activity: Activity): Boolean {
+    fun isGpsEnabled(activity: Activity): Boolean {
         val manager = activity.getSystemService(Context.LOCATION_SERVICE) as android.location.LocationManager
         return manager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import com.boilerplate.android.core.views.viewmodels.BaseVM
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 fun Disposable.autoDisposeWith(lifecycleOwner: LifecycleOwner) {
@@ -13,10 +14,9 @@ fun Disposable.autoDisposeWith(lifecycleOwner: LifecycleOwner) {
     lifecycleOwner.lifecycle.addObserver(autoDisposable)
 }
 
-fun Disposable.autoDisposeWith(baseViewModel: BaseVM) {
-    baseViewModel.disposables.add(this)
-}
+fun Disposable.autoDisposeWith(baseViewModel: BaseVM) = addTo(baseViewModel.disposables)
 
+fun Disposable.addTo(disposeBag: CompositeDisposable) = disposeBag.add(this)
 
 private class AutoDisposable(var disposable: Disposable? = null): LifecycleObserver {
 

@@ -30,7 +30,7 @@ class NotificationDataSource(
 
     fun getDefaultNotificationBuilder(): NotificationCompat.Builder {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationCompat.Builder(context, NotificationDataSource.CHANNEL_ID)
+            NotificationCompat.Builder(context, CHANNEL_ID)
                     //.setSmallIcon(R.drawable.)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setWhen(System.currentTimeMillis())
@@ -65,10 +65,13 @@ class NotificationDataSource(
 
     companion object {
 
-        const val CHANNEL_ID = "SHOPI"
+        // TODO Change this
+        const val CHANNEL_ID = "Test"
 
-        private const val CHANNEL_NAME = "Shopi"
-        private const val CHANNEL_DESCRIPTION = "N'oublie plus jamais test courses"
+        // TODO Change this
+        private const val CHANNEL_NAME = "Test"
+        // TODO Change this
+        private const val CHANNEL_DESCRIPTION = "Test"
     }
 
 }

@@ -19,14 +19,15 @@ android {
             debug {
                 debuggable true
                 minifyEnabled false
-            }
-            staging {
-                debuggable false
-                minifyEnabled true
+
+                buildConfigField "String", "API_ENDPOINT_URL", '"https://example.com"'
+
             }
             release {
                 debuggable false
                 minifyEnabled true
+
+                buildConfigField "String", "API_ENDPOINT_URL", '"https://example.com"'
             }
         }
     }
@@ -38,15 +39,14 @@ dependencies {
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
 
     // Android X
-    api 'androidx.appcompat:appcompat:1.0.2'
-    api 'androidx.multidex:multidex:2.0.1'
-    api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    api "androidx.appcompat:appcompat:$appcompatVersion"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
     api "androidx.room:room-runtime:$rootProject.roomVersion"
     api "androidx.room:room-rxjava2:$rootProject.roomVersion"
 
     // Google
-    api "com.google.android.material:material:$rootProject.materialVersion"
-    api "com.google.android.gms:play-services-base:$rootProject.playServicesVersion"
+    api "com.google.android.material:material:$materialVersion"
+    api "com.google.android.gms:play-services-base:$playServicesVersion"
     api "com.google.android.gms:play-services-location:16.0.0"
 
     // Android Architecture
@@ -56,16 +56,22 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Koin DI
-    api "org.koin:koin-android:$rootProject.koinVersion"
-    api "org.koin:koin-androidx-viewmodel:$rootProject.ext.koinVersion"
+    api "org.koin:koin-android:$koinVersion"
+    api "org.koin:koin-androidx-viewmodel:$koinVersion"
 
     // RxJava
-    api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
-    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    api "io.reactivex.rxjava2:rxjava:$rxjava2Version"
+    api "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+
+    // Network
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     // Logs
-    api "com.orhanobut:logger:$rootProject.loggerVersion"
+    api "com.orhanobut:logger:$loggerVersion"
 
     // Unit Tests
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$junitVersion"
 }

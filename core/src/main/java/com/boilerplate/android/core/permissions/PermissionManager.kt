@@ -15,30 +15,45 @@ import com.google.android.material.snackbar.Snackbar
 
 private const val NOT_GRANTED = -1
 
-open class PermissionManager(
+interface PermissionManager {
+
+    fun isPermissionGranted(context: Context, permission: String): Boolean
+    fun requestPermissions(
+        activity: Activity,
+        permissions: Array<String>,
+        permissionRationalId: Int,
+        requestCode: Int,
+        critical: Boolean = false,
+        callback: (granted: Boolean) -> Unit
+    )
+    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray)
+}
+
+class PermissionManagerImpl(
         private val sharedPreferencesStore: SharedPreferencesRepository
-) {
+) : PermissionManager {
 
-    private val queue = mutableMapOf<Int, (Boolean) -> Unit>()
+    private val queue = mutableMapOf<Int, MutableList<(Boolean) -> Unit>>()
 
-    open fun isPermissionGranted(context: Context, permission: String): Boolean {
+    override fun isPermissionGranted(context: Context, permission: String): Boolean {
         return ContextCompat.checkSelfPermission(context, permission)  == PackageManager.PERMISSION_GRANTED
     }
 
-    open fun requestPermissions(
+    override fun requestPermissions(
             activity: Activity,
             permissions: Array<String>,
             permissionRationalId: Int,
             requestCode: Int,
-            critical: Boolean = false,
-            callback: (granted: Boolean) -> Unit) {
+            critical: Boolean,
+            callback: (granted: Boolean) -> Unit
+    ) {
         var showRational = false
         var didAskPermission = false
         val rational = fromHtmlCompat(
             "<font color=\"#ffffff\">${activity.getString(permissionRationalId)}</font>"
         )
 
-        queue[requestCode] = callback
+        queue[requestCode]?.add(callback)
 
         permissions.forEach {
             if (!showRational) showRational = ActivityCompat.shouldShowRequestPermissionRationale(activity, it)
@@ -61,12 +76,10 @@ open class PermissionManager(
         }
     }
 
-    open fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         val allGranted = !grantResults.contains(NOT_GRANTED)
-        queue[requestCode]?.apply {
-            invoke(allGranted)
-            queue.remove(requestCode)
-        }
+        queue[requestCode]?.forEach { it.invoke(allGranted) }
+        queue.remove(requestCode)
     }
 
     private fun goToAppDetailActivity(activity: Activity) {
