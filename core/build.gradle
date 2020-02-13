@@ -40,6 +40,7 @@ dependencies {
 
     // Android X
     api "androidx.appcompat:appcompat:$appcompatVersion"
+    api "androidx.multidex:multidex:$multidexVersion"
     api "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
     api "androidx.room:room-runtime:$rootProject.roomVersion"
     api "androidx.room:room-rxjava2:$rootProject.roomVersion"
@@ -47,7 +48,7 @@ dependencies {
     // Google
     api "com.google.android.material:material:$materialVersion"
     api "com.google.android.gms:play-services-base:$playServicesVersion"
-    api "com.google.android.gms:play-services-location:16.0.0"
+    api "com.google.android.gms:play-services-location:17.0.0"
 
     // Android Architecture
     api "androidx.lifecycle:lifecycle-extensions:$rootProject.archVersion"

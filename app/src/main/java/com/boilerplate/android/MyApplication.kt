@@ -3,10 +3,13 @@ package com.boilerplate.android
 import androidx.multidex.MultiDexApplication
 import com.boilerplate.android.core.di.coreModule
 import com.boilerplate.android.di.appModule
-import org.koin.android.ext.android.startKoin
-import org.koin.dsl.module.Module
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
+import org.koin.core.logger.MESSAGE
+import org.koin.core.module.Module
 
 class MyApplication: MultiDexApplication() {
 
@@ -19,10 +22,20 @@ class MyApplication: MultiDexApplication() {
         Logger.addLogAdapter(AndroidLogAdapter())
 
         // Init DI
-        startKoin(this, modules, logger = object: org.koin.log.Logger {
-            override fun info(msg: String) { Logger.i("koin: $msg") }
-            override fun debug(msg: String) { Logger.d("koin: $msg") }
-            override fun err(msg: String) { Logger.e("koin: $msg") }
-        })
+        startKoin {
+            androidContext(this@MyApplication)
+
+            logger(object: org.koin.core.logger.Logger() {
+                override fun log(level: Level, msg: MESSAGE) {
+                    when(level) {
+                        Level.DEBUG -> Logger.d("koin: $msg")
+                        Level.INFO -> Logger.i("koin: $msg")
+                        Level.ERROR -> Logger.e("koin: $msg")
+                    }
+                }
+            })
+
+            modules(modules)
+        }
     }
 }
