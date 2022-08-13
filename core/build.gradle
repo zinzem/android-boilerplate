@@ -8,8 +8,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
         consumerProguardFiles 'proguard-rules.pro'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,29 +34,29 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     // Android X
     api "androidx.appcompat:appcompat:$appcompatVersion"
     api "androidx.multidex:multidex:$multidexVersion"
     api "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
-    api "androidx.room:room-runtime:$rootProject.roomVersion"
-    api "androidx.room:room-rxjava2:$rootProject.roomVersion"
+    api "androidx.room:room-runtime:$roomVersion"
+    api "androidx.room:room-rxjava2:$roomVersion"
 
     // Google
     api "com.google.android.material:material:$materialVersion"
     api "com.google.android.gms:play-services-base:$playServicesVersion"
-    api "com.google.android.gms:play-services-location:17.0.0"
+    api "com.google.android.gms:play-services-location:20.0.0"
 
     // Android Architecture
-    api "androidx.lifecycle:lifecycle-extensions:$rootProject.archVersion"
+    api "androidx.lifecycle:lifecycle-extensions:$archVersion"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
     // Kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Koin DI
-    api "org.koin:koin-android:$koinVersion"
-    api "org.koin:koin-androidx-viewmodel:$koinVersion"
+    api "io.insert-koin:koin-android:$koinVersion"
 
     // RxJava
     api "io.reactivex.rxjava2:rxjava:$rxjava2Version"

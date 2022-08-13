@@ -21,12 +21,12 @@ open class FusedLocationDataSource(context: Context): LocationCallback() {
     private val client: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     private var running = false
 
-    override fun onLocationResult(p0: LocationResult?) {
-        p0?.lastLocation?.run { _locationStream.onNext( Location(this)) }
+    override fun onLocationResult(p0: LocationResult) {
+        _locationStream.onNext(Location(p0.lastLocation))
     }
 
-    override fun onLocationAvailability(p0: LocationAvailability?) {
-        Logger.e("FusedLocationProvider available: ${p0?.isLocationAvailable}")
+    override fun onLocationAvailability(p0: LocationAvailability) {
+        Logger.e("FusedLocationProvider available: ${p0.isLocationAvailable}")
     }
 
     @SuppressWarnings("MissingPermission")
