@@ -52,6 +52,24 @@ dependencies {
     api "androidx.lifecycle:lifecycle-extensions:$archVersion"
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
+    // Image Processing
+    api 'com.google.mlkit:segmentation-selfie:16.0.0-beta4'
+
+    // Camera
+    // CameraX core library using the camera2 implementation
+    def camerax_version = "1.2.0-alpha04"
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    api "androidx.camera:camera-core:${camerax_version}"
+    api "androidx.camera:camera-camera2:${camerax_version}"
+    // If you want to additionally use the CameraX Lifecycle library
+    api "androidx.camera:camera-lifecycle:${camerax_version}"
+    // If you want to additionally use the CameraX View class
+    api "androidx.camera:camera-view:${camerax_version}"
+    // If you want to additionally add CameraX ML Kit Vision Integration
+    api "androidx.camera:camera-mlkit-vision:${camerax_version}"
+    // If you want to additionally use the CameraX Extensions library
+    api "androidx.camera:camera-extensions:${camerax_version}"
+
     // Kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 

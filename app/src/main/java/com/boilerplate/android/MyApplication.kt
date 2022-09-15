@@ -1,5 +1,7 @@
 package com.boilerplate.android
 
+import androidx.camera.camera2.Camera2Config
+import androidx.camera.core.CameraXConfig
 import androidx.multidex.MultiDexApplication
 import com.boilerplate.android.core.di.coreModule
 import com.boilerplate.android.di.appModule
@@ -11,7 +13,7 @@ import org.koin.core.logger.Level
 import org.koin.core.logger.MESSAGE
 import org.koin.core.module.Module
 
-class MyApplication: MultiDexApplication() {
+class MyApplication: MultiDexApplication(),  CameraXConfig.Provider {
 
     private val modules : List<Module> = listOf(appModule, coreModule)
 
@@ -37,5 +39,9 @@ class MyApplication: MultiDexApplication() {
 
             modules(modules)
         }
+    }
+
+    override fun getCameraXConfig(): CameraXConfig {
+        return Camera2Config.defaultConfig()
     }
 }

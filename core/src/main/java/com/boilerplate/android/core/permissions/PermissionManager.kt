@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
+import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.boilerplate.android.core.R
@@ -24,7 +25,7 @@ interface PermissionManager {
         permissionRationalId: Int,
         requestCode: Int,
         critical: Boolean = false,
-        callback: (granted: Boolean) -> Unit
+        callback: (granted: Boolean) -> Unit = {}
     )
     fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray)
 }
@@ -36,16 +37,16 @@ class PermissionManagerImpl(
     private val queue = mutableMapOf<Int, MutableList<(Boolean) -> Unit>>()
 
     override fun isPermissionGranted(context: Context, permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(context, permission)  == PackageManager.PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun requestPermissions(
-            activity: Activity,
-            permissions: Array<String>,
-            permissionRationalId: Int,
-            requestCode: Int,
-            critical: Boolean,
-            callback: (granted: Boolean) -> Unit
+        activity: Activity,
+        permissions: Array<String>,
+        @StringRes permissionRationalId: Int,
+        requestCode: Int,
+        critical: Boolean,
+        callback: (granted: Boolean) -> Unit
     ) {
         var showRational = false
         var didAskPermission = false

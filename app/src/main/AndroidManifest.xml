@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.boilerplate.android">
 
+    <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name="com.boilerplate.android.MyApplication"
@@ -14,7 +17,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name=".views.activities.MainActivity"
+            android:name=".views.activities.MainActivity3"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>

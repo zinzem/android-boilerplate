@@ -7,6 +7,7 @@ import com.boilerplate.android.core.datasources.notifications.NotificationDataSo
 import com.boilerplate.android.core.datasources.sharedpreferences.SharedPreferencesDataSource
 import com.boilerplate.android.core.location.LocationStatusManager
 import com.boilerplate.android.core.network.HttpClient
+import com.boilerplate.android.core.permissions.PermissionManager
 import com.boilerplate.android.core.permissions.PermissionManagerImpl
 import com.boilerplate.android.core.repositories.NotificationRepository
 import com.boilerplate.android.core.repositories.SharedPreferencesRepository
@@ -18,7 +19,7 @@ val coreModule = module {
     factory { NotificationRepository(get()) }
     factory { SharedPreferencesRepository(get()) }
     factory { LocationStatusManager() }
-    factory { PermissionManagerImpl(get()) }
+    factory { PermissionManagerImpl(get()) as PermissionManager }
 
     single { FusedLocationDataSource(androidContext()) }
     single { NotificationDataSource(androidContext()) }

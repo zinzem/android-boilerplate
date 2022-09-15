@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/rear_output"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_wrapper"/>
+
+    <com.boilerplate.android.views.widgets.SegmentationOutput
+        android:id="@+id/segmentation_output"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="@id/preview_start"
+        app:layout_constraintTop_toTopOf="@id/preview_top"/>
+
+    <View
+        android:id="@+id/button_wrapper"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/rear_output"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/bt_take_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/button_wrapper"
+        app:layout_constraintEnd_toEndOf="@id/button_wrapper"
+        app:layout_constraintTop_toTopOf="@id/button_wrapper"
+        app:layout_constraintBottom_toBottomOf="@id/button_wrapper"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/preview_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.45"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/preview_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.6"
+        android:orientation="horizontal"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
