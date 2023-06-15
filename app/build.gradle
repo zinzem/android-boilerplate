@@ -8,7 +8,7 @@ android {
         release {}
     }
     defaultConfig {
-        applicationId "com.example.boilerplate"
+        applicationId "com.boilerplate.android"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode

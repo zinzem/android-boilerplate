@@ -37,6 +37,7 @@ cp -r "$targetroot"/app/src/main/java/com/boilerplate/android/ "$appnamel"/app/s
 grep -rl com.boilerplate.android "$appnamel"/app/src/main/ | xargs sed -i '' "s/com.boilerplate.android/$packagename/g"
 cp "$targetroot"/app/.gitignore "$appnamel"/app/.gitignore
 cp "$targetroot"/app/build.gradle "$appnamel"/app/build.gradle
+sed -i '' "s/com.boilerplate.android/$packagename/g" "$appnamel"/app/build.gradle
 cp "$targetroot"/app/proguard-rules.pro "$appnamel"/app/proguard-rules.pro
 
 # Handle app/src/test/
