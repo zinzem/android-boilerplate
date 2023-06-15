@@ -1,4 +1,4 @@
-package com.boilerplate.android.core.extentions
+package com.boilerplate.android.core.extention
 
 import android.os.Build
 import android.text.Html

@@ -1,4 +1,4 @@
-package com.boilerplate.android.core.extentions
+package com.boilerplate.android.core.extention
 
 import com.boilerplate.android.core.views.viewmodels.BaseVM
 import io.reactivex.disposables.CompositeDisposable
