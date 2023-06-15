@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="selector_icon_size">30dp</dimen>
+
+</resources>

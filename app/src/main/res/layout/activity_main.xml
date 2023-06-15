@@ -4,4 +4,55 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/selector1_character"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/space_s"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/selector1_vehicle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/selector2_character" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/selector1_vehicle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/space_s"
+        app:layout_constraintStart_toEndOf="@id/selector1_character"
+        app:layout_constraintEnd_toStartOf="@id/selector1_tyres"
+        app:layout_constraintTop_toTopOf="@id/selector1_character"
+        app:layout_constraintBottom_toBottomOf="@id/selector1_character"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/selector1_tyres"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/space_s"
+        app:layout_constraintStart_toEndOf="@id/selector1_vehicle"
+        app:layout_constraintEnd_toStartOf="@id/selector1_glider"
+        app:layout_constraintTop_toTopOf="@id/selector1_vehicle"
+        app:layout_constraintBottom_toBottomOf="@id/selector1_vehicle"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/selector1_glider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/space_s"
+        app:layout_constraintStart_toEndOf="@id/selector1_tyres"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/selector1_vehicle"
+        app:layout_constraintBottom_toBottomOf="@id/selector1_vehicle"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/selector2_character"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/space_s"
+        app:layout_constraintStart_toStartOf="@id/selector1_character"
+        app:layout_constraintEnd_toEndOf="@id/selector1_character"
+        app:layout_constraintTop_toBottomOf="@id/selector1_character"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

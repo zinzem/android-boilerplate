@@ -27,10 +27,11 @@ class MyApplication: MultiDexApplication() {
 
             logger(object: org.koin.core.logger.Logger() {
                 override fun log(level: Level, msg: MESSAGE) {
-                    when(level) {
+                    when (level) {
                         Level.DEBUG -> Logger.d("koin: $msg")
                         Level.INFO -> Logger.i("koin: $msg")
                         Level.ERROR -> Logger.e("koin: $msg")
+                        Level.NONE -> {} //Do nothing
                     }
                 }
             })

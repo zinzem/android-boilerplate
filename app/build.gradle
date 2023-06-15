@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    namespace 'com.boilerplate.android'
     compileSdkVersion rootProject.ext.compileSdkVersion
     signingConfigs {
         debug {
@@ -35,6 +36,15 @@ android {
             minifyEnabled true
             shrinkResources true
         }
+    }
+    viewBinding {
+        enabled = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
 }
 
