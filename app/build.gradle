@@ -1,16 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     signingConfigs {
-        debug {
-
-        }
-        release {
-
-        }
+        debug {}
+        release {}
     }
     defaultConfig {
         applicationId "com.example.boilerplate"
@@ -44,4 +39,6 @@ dependencies {
 
     // Unit Tests
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "androidx.arch.core:core-testing:$testingVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
 }

@@ -31,6 +31,7 @@ class MyApplication: MultiDexApplication() {
                         Level.DEBUG -> Logger.d("koin: $msg")
                         Level.INFO -> Logger.i("koin: $msg")
                         Level.ERROR -> Logger.e("koin: $msg")
+                        else -> Logger.v("koin: $msg")
                     }
                 }
             })

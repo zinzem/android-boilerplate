@@ -5,15 +5,11 @@ import java.util.concurrent.TimeUnit
 
 class HttpClient {
 
-    val client: OkHttpClient
-
-    init {
-        client = OkHttpClient.Builder()
-            .connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
-            .readTimeout(TIMEOUT_READ, TimeUnit.MILLISECONDS)
-            .writeTimeout(TIMEOUT_WRITE, TimeUnit.MILLISECONDS)
-            .build()
-    }
+    val client: OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
+        .readTimeout(TIMEOUT_READ, TimeUnit.MILLISECONDS)
+        .writeTimeout(TIMEOUT_WRITE, TimeUnit.MILLISECONDS)
+        .build()
 
     companion object {
 

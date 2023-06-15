@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -45,15 +44,6 @@ dependencies {
 
     // Google
     api "com.google.android.material:material:$materialVersion"
-    api "com.google.android.gms:play-services-base:$playServicesVersion"
-    api "com.google.android.gms:play-services-location:20.0.0"
-
-    // Android Architecture
-    api "androidx.lifecycle:lifecycle-extensions:$archVersion"
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-
-    // Kotlin
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Koin DI
     api "io.insert-koin:koin-android:$koinVersion"
@@ -73,4 +63,6 @@ dependencies {
 
     // Unit Tests
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "androidx.arch.core:core-testing:$testingVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
 }
